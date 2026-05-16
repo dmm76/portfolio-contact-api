@@ -19,7 +19,7 @@ public class EmailService {
         Resend resend = new Resend(apiKey);
 
         SendEmailRequest email = SendEmailRequest.builder()
-                .from("onboarding@resend.dev")
+                .from("contato@monquero.dev.br")
                 .to("douglas.monquero@gmail.com")
                 .subject("Novo contato do portfólio")
                 .html("""
