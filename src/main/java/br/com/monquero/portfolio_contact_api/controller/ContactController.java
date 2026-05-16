@@ -23,11 +23,13 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> send(
-            @RequestBody ContactRequest request
-    ) {
+    public ResponseEntity<Void> send(@RequestBody ContactRequest request) {
+
+        System.out.println("Contato recebido: " + request);
 
         emailService.send(request);
+
+        System.out.println("Contato enviado com sucesso para Resend");
 
         return ResponseEntity.ok().build();
     }

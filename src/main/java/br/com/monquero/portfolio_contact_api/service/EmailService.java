@@ -1,10 +1,12 @@
 package br.com.monquero.portfolio_contact_api.service;
 
-import br.com.monquero.portfolio_contact_api.dto.ContactRequest;
-import com.resend.Resend;
-import com.resend.services.emails.model.SendEmailRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import com.resend.Resend;
+import com.resend.services.emails.model.SendEmailRequest;
+
+import br.com.monquero.portfolio_contact_api.dto.ContactRequest;
 
 @Service
 public class EmailService {
@@ -31,12 +33,18 @@ public class EmailService {
 
                         <p>%s</p>
                         """.formatted(
-                                request.nome(),
-                                request.email(),
-                                request.mensagem()
-                        ))
+                        request.nome(),
+                        request.email(),
+                        request.mensagem()))
                 .build();
 
-        resend.emails().send(email);
+        try {
+            resend.emails().send(email);
+            System.out.println("E-mail enviado pela Resend");
+        } catch (Exception e) {
+            System.out.println("Erro ao enviar e-mail pela Resend");
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao enviar e-mail pela Resend", e);
+        }
     }
 }
