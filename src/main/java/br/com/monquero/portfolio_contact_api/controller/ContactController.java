@@ -7,7 +7,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/contact")
-@CrossOrigin("*")
+@CrossOrigin(origins = {
+        "https://www.monquero.dev.br",
+        "https://monquero.dev.br",
+        "https://portfolio-website-production-c55d.up.railway.app",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+})
 public class ContactController {
 
     private final EmailService emailService;
